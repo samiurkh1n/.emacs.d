@@ -1,18 +1,17 @@
-; Theme work
+; Theme
 
-(require-package 'solarized-theme)
-
-(add-to-list 'default-frame-alist '(font . "SourceCodePro-14"))
-(set-face-attribute 'default t :font "SourceCodePro-14")
-;(set-face-attribute 'font-lock-builtin-face nil :foreground "#DAB98F")
-;(set-face-attribute 'font-lock-comment-face nil :foreground "gray50")
-;(set-face-attribute 'font-lock-constant-face nil :foreground "olive drab")
-;(set-face-attribute 'font-lock-doc-face nil :foreground "gray50")
-;(set-face-attribute 'font-lock-function-name-face nil :foreground "burlywood3")
-;(set-face-attribute 'font-lock-keyword-face nil :foreground "DarkGoldenrod3")
-;(set-face-attribute 'font-lock-string-face nil :foreground "olive drab")
-;(set-face-attribute 'font-lock-type-face nil :foreground "burlywood3")
-;(set-face-attribute 'font-lock-variable-name-face nil :foreground "burlywood3")
+;;; other font i like is AnonymicePowerline Nerd Font 11
+(add-to-list 'default-frame-alist '(font . "Hack 12"))
+(set-face-attribute 'default t :font "Hack 12")
+(set-face-attribute 'font-lock-builtin-face nil :foreground "#DAB98F")
+(set-face-attribute 'font-lock-comment-face nil :foreground "gray50")
+(set-face-attribute 'font-lock-constant-face nil :foreground "olive drab")
+(set-face-attribute 'font-lock-doc-face nil :foreground "gray50")
+(set-face-attribute 'font-lock-function-name-face nil :foreground "burlywood3")
+(set-face-attribute 'font-lock-keyword-face nil :foreground "DarkGoldenrod3")
+(set-face-attribute 'font-lock-string-face nil :foreground "olive drab")
+(set-face-attribute 'font-lock-type-face nil :foreground "burlywood3")
+(set-face-attribute 'font-lock-variable-name-face nil :foreground "burlywood3")
 (setq-default header-line-format mode-line-format)
 (setq-default mode-line-format nil)
 
@@ -27,10 +26,12 @@
   (menu-bar-mode -1)
   (tool-bar-mode -1)
   (toggle-scroll-bar -1)
+  (global-hl-line-mode 1)
+  (set-face-background 'hl-line "midnight blue")
   (set-fringe-mode '(1 . 1))
-  ;(set-foreground-color "burlywood3")
-  ;(set-background-color "#161616")
-  ;(set-cursor-color "#40FF40")
+  (set-foreground-color "burlywood3")
+  (set-background-color "#161616")
+  (set-cursor-color "#40FF40")
 )
 (add-hook 'window-setup-hook 'post-load-stuff t)
 

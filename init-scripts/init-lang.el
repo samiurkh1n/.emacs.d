@@ -28,6 +28,11 @@
   (when (maybe-require-package 'company-quickhelp)
     (add-hook 'after-init-hook 'company-quickhelp-mode)))
 
+; Markdown
+(when (maybe-require-package 'markdown-mode)
+  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
+  
 ; C++
 (require 'cc-mode)
 (setq c-default-style "linux")
@@ -47,8 +52,9 @@
                             (local-set-key (kbd "C-c i") 'go-goto-imports)
                             (local-set-key (kbd "M-.") 'godef-jump)
                             (require-package 'go-autocomplete)
-                            (require-package 'auto-complete-config)
-                            (ac-config-default))))
+                            (require-package 'auto-complete)
+                            (ac-config-default)
+                            (auto-complete-mode 1))))
 
 ; Python
 (when (maybe-require-package 'jedi)
