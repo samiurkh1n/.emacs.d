@@ -23,9 +23,11 @@
 (require 'init-editing)
 (require 'init-tags)
 (require 'init-git)
-(require 'init-trello)
 (require 'init-compile)
 (require 'init-exec-path)
+
+(require 'init-org)
+(require 'init-pdf)
 
 ; Emacs backup directory
 (setq backup-by-copying t      ; don't clobber symlinks
@@ -52,7 +54,7 @@
  '(cua-normal-cursor-color "#839496")
  '(cua-overwrite-cursor-color "#b58900")
  '(cua-read-only-cursor-color "#859900")
- '(custom-enabled-themes nil)
+ '(custom-enabled-themes (quote (dracula)))
  '(custom-safe-themes
    (quote
     ("35b0b0e531731e270708ddb342dc2e576a31fb298dcbc56a206596a43afac54f" "0598c6a29e13e7112cfbc2f523e31927ab7dce56ebb2016b567e1eff6dc1fd4f" default)))
@@ -84,6 +86,9 @@
  '(nrepl-message-colors
    (quote
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
+ '(org-agenda-files
+   (quote
+    ("~/Dropbox/Org/test.org" "~/Dropbox/Org/Personal.org" "~/Dropbox/Org/Work.org")))
  '(org-trello-current-prefix-keybinding "C-c o")
  '(package-selected-packages
    (quote
@@ -128,4 +133,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#161616" :foreground "burlywood3" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 190 :width normal :foundry "1ASC" :family "Liberation Mono")))))
+ '(default ((t (:inherit nil :stipple nil :background "#161616" :foreground "burlywood3" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 135 :width normal :foundry "1ASC" :family "Liberation Mono")))))
