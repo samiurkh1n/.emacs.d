@@ -1,8 +1,7 @@
 ; Theme
 
-;;; other font i like is AnonymicePowerline Nerd Font 11
-(add-to-list 'default-frame-alist '(font . "FuraCode Nerd Font 13"))
-(set-face-attribute 'default t :font "FuraCode Nerd Font 13")
+(add-to-list 'default-frame-alist '(font . "Hack 13"))
+(set-face-attribute 'default t :font "Hack 13")
 ;(set-face-attribute 'font-lock-builtin-face nil :foreground "#DAB98F")
 ;(set-face-attribute 'font-lock-comment-face nil :foreground "gray50")
 ;(set-face-attribute 'font-lock-constant-face nil :foreground "olive drab")
@@ -15,10 +14,11 @@
 (setq-default header-line-format mode-line-format)
 (setq-default mode-line-format nil)
 
-(load-theme 'dracula t)
-
 (when (maybe-require-package 'yascroll)
   (global-yascroll-bar-mode 1))
+
+(when (maybe-require-package 'gruvbox-theme)
+  (load-theme 'gruvbox-dark-hard t))
 
 (defun post-load-stuff ()
   (interactive)
@@ -29,10 +29,11 @@
   (tool-bar-mode -1)
   (toggle-scroll-bar -1)
   (global-hl-line-mode 1)
-  ;(set-face-background 'hl-line "midnight blue")
   (set-fringe-mode '(1 . 1))
+  (set-cursor-color "red")
+  (set-face-background 'hl-line "black")
   ;(set-foreground-color "burlywood3")
-  ;(set-background-color "#161616")
+  ;(set-background-color "#000000") ; alt is 161616
   ;(set-cursor-color "#40FF40")
 )
 (add-hook 'window-setup-hook 'post-load-stuff t)
