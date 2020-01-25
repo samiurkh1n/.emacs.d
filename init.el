@@ -2,6 +2,12 @@
 
 (setq debug-on-error t)
 
+; Increase gc limits to speed up startup
+(defvar last-file-name-handler-alist file-name-handler-alist)
+(setq gc-cons-threshold 402653184
+      gc-cons-percentage 0.6
+      file-name-handler-alist nil)
+
 (let ((minver "24.4"))
   (when (version< emacs-version minver)
     (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
@@ -54,10 +60,9 @@
  '(cua-normal-cursor-color "#839496")
  '(cua-overwrite-cursor-color "#b58900")
  '(cua-read-only-cursor-color "#859900")
- '(custom-enabled-themes (quote (dracula)))
  '(custom-safe-themes
    (quote
-    ("35b0b0e531731e270708ddb342dc2e576a31fb298dcbc56a206596a43afac54f" "0598c6a29e13e7112cfbc2f523e31927ab7dce56ebb2016b567e1eff6dc1fd4f" default)))
+    ("a22f40b63f9bc0a69ebc8ba4fbc6b452a4e3f84b80590ba0a92b4ff599e53ad0" default)))
  '(fci-rule-color "#073642")
  '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
  '(highlight-symbol-colors
@@ -86,13 +91,10 @@
  '(nrepl-message-colors
    (quote
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
- '(org-agenda-files
-   (quote
-    ("~/Dropbox/Org/test.org" "~/Dropbox/Org/Personal.org" "~/Dropbox/Org/Work.org")))
- '(org-trello-current-prefix-keybinding "C-c o")
  '(package-selected-packages
    (quote
-    (go-autocomplete dracula-theme elpy jedi go-mode solarized-theme flycheck company-c-headers)))
+    (company-go calfw-org calfw go-autocomplete dracula-theme elpy jedi go-mode solarized-theme flycheck company-c-headers)))
+ '(pdf-view-midnight-colors (quote ("#fdf4c1" . "#1d2021")))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
@@ -128,9 +130,14 @@
    ["#073642" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#eee8d5"])
  '(xterm-color-names-bright
    ["#002b36" "#cb4b16" "#586e75" "#657b83" "#839496" "#6c71c4" "#93a1a1" "#fdf6e3"]))
+
+; Reset gc after loading config
+(setq gc-cons-threshold 16777216
+      gc-cons-percentage 0.1
+      file-name-handler-alist last-file-name-handler-alist)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#161616" :foreground "burlywood3" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 135 :width normal :foundry "1ASC" :family "Liberation Mono")))))
+ '(default ((t (:inherit nil :stipple nil :background "#161616" :foreground "burlywood3" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "MS  " :family "YaHei Consolas Hybrid")))))
