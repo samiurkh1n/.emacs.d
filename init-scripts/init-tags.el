@@ -1,6 +1,7 @@
 ; Tags
 
 (require-package 'ggtags)
+(setq ggtags-executable-directory "c:/Program Files/GNU/ggtags/bin")
 (add-hook 'c-mode-common-hook
           (lambda ()
             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode 'python-mode)

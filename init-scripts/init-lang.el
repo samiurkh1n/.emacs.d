@@ -32,22 +32,29 @@
 (when (maybe-require-package 'markdown-mode)
   (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
   (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
-  
+
 ; C++
 (require 'cc-mode)
 (setq c-default-style "linux")
-(setq c-basic-offset 8)
-(setq gdb-many-windows t)
-(setq gdb-show-main t)
+(setq c-basic-offset 4)
+(require-package 'irony)
+(require-package 'company-irony)
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+;; Windows performance tweaks to make irony mode work better
+(when (boundp 'w32-pipe-read-delay)
+  (setq w32-pipe-read-delay 0))
+;; Set the buffer size to 64K on Windows (from the original 4K)
+(when (boundp 'w32-pipe-buffer-size)
+  (setq irony-server-w32-pipe-buffer-size (* 64 1024)))
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-irony))
 
 ; Go
 (require-package 'go-mode)
-(setenv "PATH" (concat (getenv "PATH") ":" "/home/samiur/Developer/go/bin"))
-(setq exec-path (append exec-path (list "/home/samiur/Developer/go/bin")))
-(if (or (eq system-type 'ms-dos) (eq system-type 'windows-nt))
-    (progn
-      (setenv "PATH" (concat (getenv "PATH") ":" "C:/Users/samiu/Developer/go/bin"))
-      (setq exec-path (append exec-path (list "C:/Users/samiu/Developer/go/bin")))))
+(setenv "PATH" (concat (getenv "PATH") ":" "C:/dev/go/bin"))
+(setq exec-path (append exec-path (list "C:/dev/go/bin")))
 (add-hook 'before-save-hook 'gofmt-before-save)
 (add-hook 'go-mode-hook (lambda ()
                           (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)
@@ -72,6 +79,8 @@
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   (add-hook 'elpy-mode-hook 'flycheck-mode))
 
-; TODO(samiurkh1n): Erlang & Elixer mode
+; 6502
+(require '6502-mode)
+(add-to-list 'auto-mode-alist '("\\.s65" . 6502-mode))
 
 (provide 'init-lang)

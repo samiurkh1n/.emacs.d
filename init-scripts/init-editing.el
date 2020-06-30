@@ -1,7 +1,14 @@
 ; Editing
 
-(setq buffer-file-coding-system "unix")
-(setq-default indent-tabs-mode nil)
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
+
+(setq-default indent-tabs-mode t)
+(setq-default tab-width 4) ; Assuming you want your tabs to be four spaces wide
+(defvaralias 'c-basic-offset 'tab-width)
 
 (global-set-key (kbd "RET") 'newline-and-indent)
 
@@ -75,10 +82,10 @@
   (windmove-default-keybindings))
 
 ;; 80 line column
-(when (maybe-require-package 'fill-column-indicator)
-  (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
-  (setq fci-rule-column 80)
-  (global-fci-mode 1))
+;; (when (maybe-require-package 'fill-column-indicator)
+;;   (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+;;  (setq fci-rule-column 80)
+;;  (global-fci-mode 1))
 
 ;; jump to top or bottom
 (global-set-key (kbd "<home>") 'beginning-of-buffer)

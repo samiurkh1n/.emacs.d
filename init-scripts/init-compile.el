@@ -40,6 +40,7 @@
       (funcall orig edit-command)))
   (advice-add 'recompile :around 'find-prev-compilation))
 
+(global-set-key [f5] 'compile)
 (global-set-key [f6] 'recompile)
 
 (with-eval-after-load 'compile
@@ -48,5 +49,8 @@
     (when (eq major-mode 'compilation-mode)
       (ansi-color-apply-on-region compilation-filter-start (point-max))))
   (add-hook 'compilation-filter-hook '/colourise-compilation-buffer))
+
+(when (maybe-require-package 'cmake-ide)
+  (cmake-ide-setup))
 
 (provide 'init-compile)
